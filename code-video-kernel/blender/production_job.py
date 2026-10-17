@@ -152,15 +152,17 @@ def build(job, out):
         (1,(0,0,0)),(130,(0,.04,.04)),(220,(0,.09,-.06)),
         (300,(0,-.04,0)),(360,(0,0,0))])
     keys_loc(targets["R_Hand_Target"],job,[
-        (1,(.96,-.3,1.28)),(84,(1.10,-.37,1.27)),
-        (132,(1.01,-.50,.92)),(176,(.98,-.50,.92)),
-        (235,(1.35,-.50,.90)),(272,(1.92,-.50,.90)),
-        (295,(1.35,-.35,1.18)),(360,(.96,-.3,1.28))])
+        (1,(.96,-.3,1.28)),(84,(.98,-.37,1.27)),
+        (132,(.98,-.50,1.02)),(176,(.98,-.50,1.02)),
+        (200,(1.03,-.50,1.02)),(220,(1.08,-.50,1.02)),
+        (235,(1.15,-.50,1.02)),(260,(1.28,-.50,1.02)),
+        (272,(1.35,-.50,1.02)),(295,(1.20,-.35,1.23)),
+        (360,(.96,-.3,1.28))])
     # The block physically moves only after the right hand makes contact.
-    bpy.ops.mesh.primitive_cube_add(size=1,location=(1.36,-.5,.44))
+    bpy.ops.mesh.primitive_cube_add(size=1,location=(1.36,-.5,.51))
     block=bpy.context.object
     block.name="Block_Obstacle"
-    block.scale=(.76,.76,.88)
+    block.scale=(.76,.76,1.02)
     bpy.ops.object.transform_apply(location=False,rotation=False,scale=True)
     block.data.materials.append(cube_mat)
     edge=block.modifiers.new("Rounded load-bearing edges","BEVEL")
@@ -168,28 +170,29 @@ def build(job, out):
     edge.segments=3
     block.modifiers.new("Weighted normals","WEIGHTED_NORMAL")
     keys_loc(block,job,[
-        (1,(1.36,-.50,.44)),(176,(1.36,-.50,.44)),
-        (235,(1.73,-.50,.44)),(272,(2.30,-.50,.44)),
-        (360,(2.30,-.50,.44))])
+        (1,(1.36,-.50,.51)),(176,(1.36,-.50,.51)),
+        (200,(1.39,-.50,.51)),(220,(1.43,-.50,.51)),
+        (235,(1.44,-.50,.51)),(260,(1.50,-.50,.51)),
+        (272,(1.52,-.50,.51)),(360,(1.52,-.50,.51))])
     # A genuinely modeled sprout is revealed as the block slides away.
-    bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=.045, depth=.39, location=(1.26,.08,.23))
+    bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=.045, depth=.39, location=(.82,.08,.23))
     stem=bpy.context.object
     stem.name="Sprout_Stem"
     stem.data.materials.append(green)
-    uv_ellipsoid("Sprout_Leaf_L",(1.16,.05,.38),(.16,.08,.04),green)
-    uv_ellipsoid("Sprout_Leaf_R",(1.36,.07,.43),(.16,.08,.04),green)
-    bloom=uv_ellipsoid("Sprout_Light",(1.26,.06,.51),(.155,.155,.14),cyan,segments=32)
+    uv_ellipsoid("Sprout_Leaf_L",(.72,.05,.38),(.16,.08,.04),green)
+    uv_ellipsoid("Sprout_Leaf_R",(.92,.07,.43),(.16,.08,.04),green)
+    bloom=uv_ellipsoid("Sprout_Light",(.82,.06,.51),(.155,.155,.14),cyan,segments=32)
     for ff,size in ((1,.35),(205,.35),(286,1.3),(360,1.70)):
         bloom.scale=(size,size,size)
         bloom.keyframe_insert(data_path="scale",frame=frame(job,ff))
-    bpy.ops.object.light_add(type="AREA",location=(1.26,-.10,.95))
+    bpy.ops.object.light_add(type="AREA",location=(.82,-.10,.95))
     bloom_light=bpy.context.object
     bloom_light.name="Sprout_Reveal_Light"
     bloom_light.data.energy=0
     bloom_light.data.shape="DISK"
     bloom_light.data.size=1.2
     bloom_light.data.color=(.10,.85,1.0)
-    look_at(bloom_light,(1.26,0,.35))
+    look_at(bloom_light,(.82,0,.35))
     for ff,energy in ((1,0),(235,0),(290,140),(360,230)):
         bloom_light.data.energy=energy
         bloom_light.data.keyframe_insert(data_path="energy",frame=frame(job,ff))
@@ -277,9 +280,31 @@ def build(job, out):
         "ik_targets":[o.name for o in targets.values()],
         "sample_frames":poses,
         "prop_contact":{"type":"push","frame_begin":frame(job,176),
-                        "frame_end":frame(job,272),
+                        "frame_end":frame(job,260),
                         "block":"Block_Obstacle","target":"IK_R_Hand_Target"},
         "classification":"REAL_BLENDER_RIG_TECHNICAL_PROOF_VISUAL_REVIEW_REQUIRED"}
+    # Actual evaluated hand geometry must stay in physical contact during push.
+    contact_samples={}
+    for sample in (176,200,220,235,260):
+        fr=frame(job,sample)
+        s.frame_set(fr)
+        deps=bpy.context.evaluated_depsgraph_get()
+        bounds=[]
+        for part in (bpy.data.objects["R_Palm"],block):
+            evaluated=part.evaluated_get(deps)
+            mesh=evaluated.to_mesh()
+            world_pts=[evaluated.matrix_world @ v.co for v in mesh.vertices]
+            evaluated.to_mesh_clear()
+            bounds.append(([min(p[i] for p in world_pts) for i in range(3)],
+                           [max(p[i] for p in world_pts) for i in range(3)]))
+        (lo_a,hi_a),(lo_b,hi_b)=bounds
+        gaps=[max(0.0,lo_b[i]-hi_a[i],lo_a[i]-hi_b[i]) for i in range(3)]
+        gap=math.sqrt(sum(g*g for g in gaps))
+        if gap>.03:
+            raise RuntimeError(f"Hand/prop contact failed frame {fr}: {gap:.4f}m")
+        contact_samples[str(fr)]={"geometry_bbox_clearance_m":round(gap,5),
+             "method":"evaluated skinned palm/obstacle world bounding volumes"}
+    manifest["prop_contact"]["measured_samples"]=contact_samples
     diagnostics=out/"diagnostics"
     diagnostics.mkdir(exist_ok=False)
     settings(s,job,512,288)

@@ -166,6 +166,13 @@ def _check_source(out,doc):
         len(data.get("deforming_mesh_deltas_m",{}))<4 or
         min(data["deforming_mesh_deltas_m"].values())<.015):
         raise GateError("Actual armature/weighted mesh proof is inadequate")
+    contact=data.get("prop_contact",{}).get("measured_samples",{})
+    if len(contact)<5 or any(
+        not isinstance(point,dict) or
+        not isinstance(point.get("geometry_bbox_clearance_m"),(int,float)) or
+        point["geometry_bbox_clearance_m"] > .03
+        for point in contact.values()):
+        raise GateError("Missing or failed evaluated hand/prop contact witness")
     for name,digest in data.get("diagnostic_hashes",{}).items():
         p=out/"diagnostics"/name
         if p.name!=name or not p.is_file() or sha256(p)!=digest:
