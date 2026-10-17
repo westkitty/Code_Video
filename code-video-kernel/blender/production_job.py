@@ -154,8 +154,8 @@ def build(job, out):
     keys_loc(targets["R_Hand_Target"],job,[
         (1,(.96,-.3,1.28)),(84,(1.10,-.37,1.27)),
         (132,(1.01,-.50,.92)),(176,(.98,-.50,.92)),
-        (235,(1.35,-.50,.92)),(260,(1.55,-.50,1.13)),
-        (303,(1.12,-.30,1.26)),(360,(.96,-.3,1.28))])
+        (235,(1.35,-.50,.90)),(272,(1.92,-.50,.90)),
+        (295,(1.35,-.35,1.18)),(360,(.96,-.3,1.28))])
     # The block physically moves only after the right hand makes contact.
     bpy.ops.mesh.primitive_cube_add(size=1,location=(1.36,-.5,.44))
     block=bpy.context.object
@@ -214,7 +214,7 @@ def build(job, out):
     camera_defs=[
         ("CV_Shot_01",(3.6,-6.7,3.0),(.35,0,1.40),35),
         ("CV_Shot_02",(-1.6,-3.6,1.78),(1.16,-.35,1.03),48),
-        ("CV_Shot_03",(2.3,-4.6,2.32),(.62,.04,1.40),44)]
+        ("CV_Shot_03",(2.4,-5.6,2.9),(.53,0,1.32),35)]
     for name, pos, at, lens in camera_defs:
         bpy.ops.object.camera_add(location=pos)
         cam=bpy.context.object
@@ -277,7 +277,7 @@ def build(job, out):
         "ik_targets":[o.name for o in targets.values()],
         "sample_frames":poses,
         "prop_contact":{"type":"push","frame_begin":frame(job,176),
-                        "frame_end":frame(job,235),
+                        "frame_end":frame(job,272),
                         "block":"Block_Obstacle","target":"IK_R_Hand_Target"},
         "classification":"REAL_BLENDER_RIG_TECHNICAL_PROOF_VISUAL_REVIEW_REQUIRED"}
     diagnostics=out/"diagnostics"
@@ -288,6 +288,13 @@ def build(job, out):
         s.camera=bpy.data.objects["CV_Shot_01"]
         s.render.filepath=str(diagnostics/f"pose_{fr:05d}.png")
         bpy.ops.render.render(write_still=True)
+    # Per-shot entrance/mid/exit preflight exposes framing defects before full-HD rendering.
+    for shot in job["shots"]:
+        for fr in sorted({shot["start"],(shot["start"]+shot["end"])//2,shot["end"]}):
+            s.frame_set(fr)
+            s.camera=bpy.data.objects[shot["camera"]]
+            s.render.filepath=str(diagnostics/f"shot_{shot['id']}_{fr:05d}.png")
+            bpy.ops.render.render(write_still=True)
     manifest["diagnostic_hashes"]={p.name:digest(p) for p in sorted(diagnostics.glob("*.png"))}
     atomic_json(out/"rig_manifest.json",manifest)
     print("CODEVIDEO_BUILD_PASS="+str(out/"rig_manifest.json"),flush=True)
