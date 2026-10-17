@@ -13,11 +13,18 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Install test dependencies
+      - name: Install native media and headless rendering tools
         run: |
-          python -m pip install -e './code-video-kernel[dev]'
-      - name: Run unit and regression tests
-        run: python -m pytest -q code-video-kernel/tests
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg xvfb xauth libegl1 libgl1 libxrender1 libxext6
+          ffmpeg -version | head -n 1
+          ffprobe -version | head -n 1
+      - name: Install test and renderer dependencies
+        run: |
+          python -m pip install -e './code-video-kernel[dev,vtk-demo]'
+          python -c 'import vtk, PIL; print("VTK",vtk.vtkVersion.GetVTKVersion(),"Pillow",PIL.__version__)'
+      - name: Run full unit and renderer regression tests
+        run: xvfb-run -a python -m pytest -q code-video-kernel/tests
       - name: Verify public deliverables
         run: |
           python - <<'PYCI'
@@ -28,5 +35,6 @@ jobs:
               assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
           for target in ['assets/the-reach-native-blender.mp4','assets/the-reach-editable.blend','assets/the-reach-animated-rig.glb']:
               assert (root/target).stat().st_size>1000,target
-          print('SHA256 release assets OK')
+          subprocess.run(['ffmpeg','-v','error','-xerror','-i',str(root/'assets/the-reach-native-blender.mp4'),'-f','null','-'],check=True)
+          print('Verified source hashes and full encoded film decode')
           PYCI
