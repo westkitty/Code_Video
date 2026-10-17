@@ -1,0 +1,23 @@
+# Keep private runtime material and large frame caches out of Git and Pages.
+.DS_Store
+__pycache__/
+.pytest_cache/
+*.py[cod]
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*secret*
+*transfer64*
+*.blend1
+*.blend2
+**/.codevideo/
+**/frame_*.png
+**/native_frames/
+**/*.log
+.venv/
+node_modules/
+dist/
+build/
