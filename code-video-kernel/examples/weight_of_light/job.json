@@ -1,6 +1,6 @@
 {
   "format": "codevideo.job.v1",
-  "job_id": "weight_of_light_repaired",
+  "job_id": "weight_of_light_release",
   "title": "The Weight of Light",
   "synopsis": "A solitary stage caretaker discovers a luminous sprout pinned behind a heavy block. It braces, pushes, nearly gives up, then clears the obstruction and bows in relief.",
   "character_name": "The Caretaker",
@@ -42,7 +42,7 @@
       "purpose": "Reveal the living sprout and let relief resolve into a small bow",
       "emotion": "Surprise, quiet pride and tenderness",
       "performance": "Push ends, head tracks revealed bloom, torso rises, jaw opens and figure bows",
-      "continuity": "Hand releases after frame 260; block coasts to rest near frame 272; the emerging sprout grows and the actor bows"
+      "continuity": "The hand releases at frame 260, the small block settles, the clearly separated sprout grows between puppet and block, and the puppet bows"
     }
   ]
 }

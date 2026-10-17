@@ -175,24 +175,24 @@ def build(job, out):
         (235,(1.44,-.50,.51)),(260,(1.50,-.50,.51)),
         (272,(1.52,-.50,.51)),(360,(1.52,-.50,.51))])
     # A genuinely modeled sprout is revealed as the block slides away.
-    bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=.045, depth=.39, location=(.82,.08,.23))
+    bpy.ops.mesh.primitive_cylinder_add(vertices=12, radius=.045, depth=.39, location=(.57,.08,.23))
     stem=bpy.context.object
     stem.name="Sprout_Stem"
     stem.data.materials.append(green)
-    uv_ellipsoid("Sprout_Leaf_L",(.72,.05,.38),(.16,.08,.04),green)
-    uv_ellipsoid("Sprout_Leaf_R",(.92,.07,.43),(.16,.08,.04),green)
-    bloom=uv_ellipsoid("Sprout_Light",(.82,.06,.51),(.155,.155,.14),cyan,segments=32)
+    uv_ellipsoid("Sprout_Leaf_L",(.47,.05,.38),(.16,.08,.04),green)
+    uv_ellipsoid("Sprout_Leaf_R",(.67,.07,.43),(.16,.08,.04),green)
+    bloom=uv_ellipsoid("Sprout_Light",(.57,.06,.51),(.155,.155,.14),cyan,segments=32)
     for ff,size in ((1,.35),(205,.35),(286,1.3),(360,1.70)):
         bloom.scale=(size,size,size)
         bloom.keyframe_insert(data_path="scale",frame=frame(job,ff))
-    bpy.ops.object.light_add(type="AREA",location=(.82,-.10,.95))
+    bpy.ops.object.light_add(type="AREA",location=(.57,-.10,.95))
     bloom_light=bpy.context.object
     bloom_light.name="Sprout_Reveal_Light"
     bloom_light.data.energy=0
     bloom_light.data.shape="DISK"
     bloom_light.data.size=1.2
     bloom_light.data.color=(.10,.85,1.0)
-    look_at(bloom_light,(.82,0,.35))
+    look_at(bloom_light,(.57,0,.35))
     for ff,energy in ((1,0),(235,0),(290,140),(360,230)):
         bloom_light.data.energy=energy
         bloom_light.data.keyframe_insert(data_path="energy",frame=frame(job,ff))
