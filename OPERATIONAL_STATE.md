@@ -30,3 +30,9 @@ Project identity: Code Video film-production kernel + native Blender proof. Publ
 - New CLI job-preflight/build/render/encode/produce and official MCP in-process handshake (33 tools) pass; ChatGPT-hosted plugin installation not proven.
 - Before this change, full local suite using Python 3.13 + pytest + NumPy: 75 pass, 4 fail, 6 skip. After FFmpeg 9 review extractor repair + live Blender mock repair + new tests: 96 pass, 1 environment-dependent VTK failure, 6 skip. Re-run with VTK or in GitHub CI.
 - Preserve original The Reach published assets and all v0.3.2 release packages; never equate new experimental CLI with completed film-studio autonomy.
+
+## 2026-10-17 — New full-HD output complete (release candidate)
+- The Weight of Light original 360-frame, 1920x1080, 30 fps native Blender silent MP4 has independently fully decoded on two Macs. Actual MP4 SHA-256 f21002579adca91151e63122f0902a5e4406288a2b236127f15e08d14325f7bf.
+- Editable .blend, 13 diagnostic pose/camera frames in original workspace, full 360-frame source-hash manifest, 3-shot graph, contact witness ledger, benchmark and encoded-film review receipt obtained. See docs/WEIGHT_OF_LIGHT_QA.md.
+- G7 ARTISTIC PARTIAL: slow/static beginning and ending, restrained prop performance; studio is NOT universal. G8/G10 public deployment pending until exact URLs verified.
+- GitHub CI on implementation branch af33bcd PASS: 102 passing, 1 skipped. PR #2 kept draft pending merge/publication checks.

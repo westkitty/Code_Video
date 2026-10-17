@@ -33,3 +33,8 @@ Original GLB/MP4, no subtitles, no unapproved voices, no still/slideshow substit
 - Rig smoke verified in real Blender 5.2.2: four continuous weighted meshes, 11 moving joints, fixed-camera diagnostic renders, at least one signed frame. Full-HD 360-frame film, artistic QA and web delivery NOT VERIFIED at this point.
 - MCP in-process handshake verified 33 tools using SDK 2.x protocol 2026-07-28; ChatGPT remote host connection UNVERIFIED.
 - No legacy v0.3.2 outputs overwritten. Historical earlier local no-Blender claims refer to previous isolated environment; real MacBook Blender available now.
+
+## 2026-10-17 — Production gold fixture acceptance result
+- See repository docs/WEIGHT_OF_LIGHT_QA.md and docs/weight-of-light-film-receipt.json for a real 12.0-second full-HD (1920x1080, 30fps) independent native Blender production, 360/360 source-hashed PNGs, ffprobe/full decode PASS.
+- Real weighted joint proof 11 animated nonroot, 4 deforming meshes; contact 0 to 0.00819m clearance over 5 sampled frames. All scene and film hashes available.
+- G7 artistic visual acceptance PARTIAL, despite technical render/encode pass. Resume by improving pacing/contact/readability before broad film claims. Plugin remote connectivity, nonhuman anatomy, audio, canonical identity not verified. Preserve v0.3.2 legacy release.

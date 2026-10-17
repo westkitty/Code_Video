@@ -4,6 +4,12 @@
 
 This repository preserves the Code Video Production Kernel **v0.3.2** and its later, tested film-contract source additions, along with the actual **The Reach** native Blender demonstration rendered on 2026-10-17. It does **not** claim that an arbitrary-input autonomous studio or connected ChatGPT MCP plugin is finished.
 
+## New full-HD native production acceptance fixture (2026-10-17)
+
+**[Watch The Weight of Light](assets/weight-of-light-native-blender.mp4)** · [Native editable Blender scene](assets/weight-of-light-editable.blend) · [QA and known limitations](docs/WEIGHT_OF_LIGHT_QA.md) · [Rig proof](docs/weight-of-light-rig-proof.json) · [360-source-frame manifest](docs/weight-of-light-frame-manifest.json) · [Full-encode receipt](docs/weight-of-light-film-receipt.json).
+
+A brand-new supported film job produced a genuine 1920×1080, 30fps, 12-second, H.264/yuv420p film on Blender 5.2.2, with 360 source-hashed frames and successful full decodes on Big Mac and MacBook. Native source has 18 bones, 11 animated nonroot joints and four continuously weighted deforming limb meshes, with sampled physical hand/block contact. The encoder and renderer pass. Visual quality is **PARTIAL**: extended near-static holds and subdued prop acting remain. This is a bounded original humanoid template, **not** arbitrary natural-language film production or completed autonomous studio. The previous Reach film and v0.3.2 packages are preserved.
+
 ## Proof that exists
 
 - Native Blender 5.2.2 Eevee film, **12.0 seconds**, **24 fps**, **288 frames**, **480×270**, H.264/yuv420p, intentionally silent, **no subtitles**.
