@@ -8,6 +8,11 @@ def main(argv=None)->int:
     parser.add_argument('--workspace',help='Dedicated workspace path (also CODEVIDEO_WORKSPACE)')
     commands=parser.add_subparsers(dest='command',required=True)
     p=commands.add_parser('preflight');p.add_argument('--media')
+    p=commands.add_parser('job-preflight');p.add_argument('spec')
+    p=commands.add_parser('job-build');p.add_argument('spec')
+    p=commands.add_parser('job-render');p.add_argument('spec');p.add_argument('--max-frames',type=int,default=48)
+    p=commands.add_parser('job-encode');p.add_argument('spec')
+    p=commands.add_parser('job-produce');p.add_argument('spec');p.add_argument('--max-seconds',type=int,default=7200)
     p=commands.add_parser('init');p.add_argument('name')
     p=commands.add_parser('demo');p.add_argument('name')
     p=commands.add_parser('vtk-demo');p.add_argument('name');p.add_argument('--width',type=int,default=960);p.add_argument('--height',type=int,default=540);p.add_argument('--fps',type=int,default=24);p.add_argument('--seconds',type=float,default=6)
@@ -44,6 +49,13 @@ def main(argv=None)->int:
         if args.command=='preflight':
             from .preflight import preflight
             out=preflight(root,args.media)
+        elif args.command.startswith('job-'):
+            from . import production_job
+            if args.command=='job-preflight':out=production_job.preflight(root,args.spec)
+            elif args.command=='job-build':out=production_job.build(root,args.spec)
+            elif args.command=='job-render':out=production_job.render(root,args.spec,max_frames=args.max_frames)
+            elif args.command=='job-encode':out=production_job.encode(root,args.spec)
+            elif args.command=='job-produce':out=production_job.produce(root,args.spec,max_render_seconds=args.max_seconds)
         elif args.command=='init':
             from .project import create_project
             out=create_project(root,args.name)

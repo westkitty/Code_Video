@@ -31,6 +31,12 @@ python -m pytest -q code-video-kernel/tests
 
 This excludes the optional VTK dependency; VTK-specific integration tests may skip when unavailable. Blender rendering additionally requires a real Blender 5.2+ binary and FFmpeg. Do not assume the code's optional MCP server is connected until an authenticated live handshake has been verified.
 
+## Experimental new-job pipeline (development branch)
+
+The new Python native-film lane supports a validated, independent 3D Blender production job rather than rerunning The Reach: original humanoid, independently timed armature joints, four weighted limb skins, a motivated prop interaction, three cameras, actual pose/mesh proof, resumable PNG frames, and an H.264 full-decode receipt. The flagship test is The Weight of Light at 1920x1080, 30 fps, 12 seconds. See code-video-kernel/docs/NEW_JOB_PIPELINE.md and code-video-kernel/examples/weight_of_light/job.json.
+
+Currently **template-limited**: one noncanonical humanoid/action preset only; multi-character, arbitrary anatomy, Starsilk identity, audio/lip sync and free-form story production are not certified. New rendering, encoded media QA, visual inspection, and public delivery must each be proven separately before calling the studio finished.
+
 ## Publication / safety
 
 GitHub Pages serves only a **static showcase and local-file downloads**, not a remote rendering service, authenticated API, or hosted Blender engine. Do not upload user-provided licensed audio, private references, generated credential files or diagnostic raw logs to this public repository. The kernel retains its `code-video-kernel/LICENSE` license; media has not been relicensed by publishing this showcase.

@@ -139,7 +139,7 @@ def test_gltf_animation_has_keyframes_and_no_subtitles(valid):
 def test_native_blender_bridge_is_honestly_blocked_without_binary(tmp_path,monkeypatch,valid):
     from codevideo.blender_bridge import import_rig
     import shutil
-    monkeypatch.setattr(shutil,'which',lambda name: None if name=='blender' else '/usr/bin/true')
+    monkeypatch.setattr('codevideo.blender_bridge.blender_executable',lambda: None)
     p=tmp_path/'actor.glb';p.write_bytes(valid)
     r=import_rig(tmp_path,str(p),'host_import')
     assert r['status']=='BLOCKED' and r['gate']=='BLENDER'

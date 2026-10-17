@@ -26,3 +26,10 @@ Preserved baseline: v0.3.1 exact exported animated GLB and v0.3.0 12-second VTK 
 
 ## Protected
 Original GLB/MP4, no subtitles, no unapproved voices, no still/slideshow substitutes, no invented Blender results, no default publication, no overwrite or force-push.
+
+## Experimental new film job lane — 2026-10-17
+- Source: blender/production_job.py, codevideo/production_job.py; fixture examples/weight_of_light/job.json; new CLI commands job-preflight/build/render/encode/produce.
+- Limit: one original noncanonical humanoid, fixed uncover_sprout action, three known cameras, silent 12–20s. Canonical actors, flyers, quadrupeds, multiple actors and lip sync NOT SUPPORTED.
+- Rig smoke verified in real Blender 5.2.2: four continuous weighted meshes, 11 moving joints, fixed-camera diagnostic renders, at least one signed frame. Full-HD 360-frame film, artistic QA and web delivery NOT VERIFIED at this point.
+- MCP in-process handshake verified 33 tools using SDK 2.x protocol 2026-07-28; ChatGPT remote host connection UNVERIFIED.
+- No legacy v0.3.2 outputs overwritten. Historical earlier local no-Blender claims refer to previous isolated environment; real MacBook Blender available now.
