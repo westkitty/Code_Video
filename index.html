@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b0e13">
+  <meta name="description" content="Code Video: an evidence-first 3D puppet film studio. Watch the verified native Blender demonstration and inspect the real rig, source, and QA.">
+  <title>Code Video — The Puppet Actually Moves</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to film</a>
+  <header class="topbar wrap">
+    <a class="wordmark" href="#top" aria-label="Code Video home"><span class="sigil" aria-hidden="true">CV<span class="point">.</span></span><span>CODE<span class="smallgap">/</span>VIDEO</span></a>
+    <nav aria-label="Main navigation"><a href="#film">Film</a><a href="#proof">Proof</a><a href="#downloads">Files</a><a href="https://github.com/westkitty/Code_Video">Source ↗</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero wrap" id="top" aria-labelledby="headline">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> NATIVE BLENDER MILESTONE · 17 OCT 2026</p>
+        <h1 id="headline">The puppet<br><em>actually moves.</em></h1>
+        <p class="intro">Real geometry. An actual skeleton. Weighted deformation. A complete twelve-second film—and the receipts that prove what was rendered.</p>
+        <div class="actions"><a class="button primary" href="#film">Watch the film <span aria-hidden="true">↘</span></a><a class="button secondary" href="assets/the-reach-editable.blend" download>Get the editable .blend</a></div>
+        <p class="hero-foot"><span class="truth">TECHNICAL PROOF VERIFIED</span><span>Full autonomous studio: still in development.</span></p>
+      </div>
+      <div class="hero-art"><img src="assets/shot-3.webp" alt="A real frame from the Blender-rendered film showing the 3D puppet with its right arm bent near a glowing blue orb" width="480" height="270"><div class="reticle" aria-hidden="true"></div><p>FRAME 224 / 288 <span>·</span> BLENDER EEVEE</p></div>
+    </section>
+    <section class="film-band" id="film" aria-labelledby="film-title"><div class="wrap">
+      <div class="section-head"><p class="eyebrow">01 / THE FILM</p><h2 id="film-title">THE REACH</h2><p>One character. One object. Three deliberate shots. The story of an attempted grasp.</p></div>
+      <div class="player"><video controls playsinline preload="metadata" poster="assets/poster.webp" aria-label="The Reach, a 12-second 3D puppet performance rendered in Blender"><source src="assets/the-reach-native-blender.mp4" type="video/mp4">Your browser cannot play this video. <a href="assets/the-reach-native-blender.mp4">Download the H.264 MP4.</a></video></div>
+      <div class="player-foot"><span>BLENDER 5.2.2 · H.264 · 480×270 · 24 FPS · 12.00 S</span><a href="assets/the-reach-native-blender.mp4" download>Download original film <span aria-hidden="true">↓</span></a></div>
+      <div class="shotgrid" aria-label="The three actual shots"><figure><img src="assets/shot-1.webp" loading="lazy" alt="Shot one: the 3D actor begins to notice the blue object" width="480" height="270"><figcaption><span>SHOT 01 / FRAMES 001–096</span><strong>Recognition</strong></figcaption></figure><figure><img src="assets/shot-2.webp" loading="lazy" alt="Shot two: the actor reaches toward the blue orb" width="480" height="270"><figcaption><span>SHOT 02 / FRAMES 097–192</span><strong>Struggle</strong></figcaption></figure><figure><img src="assets/shot-3.webp" loading="lazy" alt="Shot three: the actor reacts to the glowing sphere near its hand" width="480" height="270"><figcaption><span>SHOT 03 / FRAMES 193–288</span><strong>Resolution</strong></figcaption></figure></div>
+    </div></section>
+    <section class="proof wrap" id="proof" aria-labelledby="proof-title">
+      <div class="section-head"><p class="eyebrow">02 / EVIDENCE, NOT CLAIMS</p><h2 id="proof-title">Built to withstand<br><em>inspection.</em></h2><p>This is a native Blender scene with skin deformation—not a cutout, a rotating static model, or a slideshow.</p></div>
+      <div class="metrics" aria-label="Verified production metrics"><div><strong>18</strong><span>ARMATURE BONES</span></div><div><strong>4</strong><span>WEIGHTED LIMB MESHES</span></div><div><strong>288<span class="slash">/288</span></strong><span>HASH-VERIFIED FRAMES</span></div><div><strong>2</strong><span>MACS PROVED THE RIG</span></div></div>
+      <div class="proof-grid"><article><span class="tag">RIG GATE / PASS</span><h3>Real skeletal acting</h3><p>Four continuous skinned meshes visibly deform as the armature moves. The scene has torso, head, jaw, jointed arms, legs, IK and a prop contact event.</p></article><article><span class="tag">RENDER GATE / PASS</span><h3>Native film, not a preview</h3><p>Blender Eevee rendered every frame. The encoded MP4 passed full FFmpeg decoding, frame-count, duration and source-integrity checks.</p></article><article><span class="tag warn">STUDIO GATE / OPEN</span><h3>No inflated finish line</h3><p>This is a modest 480×270 technical film. A general autonomous pipeline, full-HD artistic release and live ChatGPT MCP integration remain unverified.</p></article></div>
+      <details class="hashblock"><summary>Verify the actual output hashes <span>+</span></summary><p>SHA-256 · MP4</p><code>e180b5320636c2d31b411426f526eb27795b5e0e6895230bcf94c133b758e022</code><p>SHA-256 · BLEND</p><code>3a778c61eaa53493d1471df54c3ccd1a4d5967e54bc3c575a2b3a9aefae98ceb</code><p><a href="docs/NATIVE_QA.md">Read the full native render QA report ↗</a></p></details>
+    </section>
+    <section class="downloads" id="downloads"><div class="wrap"><div class="section-head"><p class="eyebrow">03 / TAKE IT APART</p><h2>Nothing behind<br><em>a curtain.</em></h2><p>Film, editable rig, portable skeletal asset, and the working code. Open them. Inspect them. Make the next scene.</p></div><div class="download-grid">
+      <a class="dl" href="assets/the-reach-native-blender.mp4" download><span class="dltype">01 / WATCH</span><strong>Rendered MP4</strong><span>Native Blender film · 12 seconds</span><b aria-hidden="true">↗</b></a>
+      <a class="dl" href="assets/the-reach-editable.blend" download><span class="dltype">02 / EDIT</span><strong>Native .blend</strong><span>Real armature, weighted meshes, cameras</span><b aria-hidden="true">↗</b></a>
+      <a class="dl" href="assets/the-reach-animated-rig.glb" download><span class="dltype">03 / REUSE</span><strong>Animated GLB</strong><span>Separate portable rig demonstration</span><b aria-hidden="true">↗</b></a>
+      <a class="dl" href="downloads/Code_Video_Production_Kernel_v0.3.2.zip" download><span class="dltype">04 / BUILD</span><strong>Production kernel</strong><span>Source, Blender workers, MCP adapter, tests</span><b aria-hidden="true">↗</b></a>
+      <a class="dl" href="downloads/Code_Video_Skill_v0.3.2.zip" download><span class="dltype">05 / INSTALL</span><strong>ChatGPT Skill ZIP</strong><span>v0.3.2 certified instruction bundle</span><b aria-hidden="true">↗</b></a>
+      <a class="dl" href="https://github.com/westkitty/Code_Video/tree/main/code-video-kernel"><span class="dltype">06 / INSPECT</span><strong>Source on GitHub</strong><span>Tests and workflow contracts</span><b aria-hidden="true">↗</b></a>
+    </div></div></section>
+  </main>
+  <footer class="footer wrap"><div class="footname">CODE<span>/</span>VIDEO</div><p>Volumetric puppets. Verifiable motion. No subtitles unless requested.<br><small>Original noncanonical technical actor · Static Pages site, not a cloud renderer.</small></p><a href="https://github.com/westkitty/Code_Video">Repository ↗</a></footer>
+</body>
+</html>

@@ -1,0 +1,32 @@
+name: Verify kernel and published artifacts
+on:
+  pull_request:
+  push:
+    branches: [main]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: |
+          python -m pip install -e './code-video-kernel[dev]'
+      - name: Run unit and regression tests
+        run: python -m pytest -q code-video-kernel/tests
+      - name: Verify public deliverables
+        run: |
+          python - <<'PYCI'
+          import hashlib, pathlib, subprocess
+          root=pathlib.Path('.')
+          for line in (root/'docs/SHA256SUMS.txt').read_text().splitlines():
+              digest,name=line.split('  ',1)
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
+          for target in ['assets/the-reach-native-blender.mp4','assets/the-reach-editable.blend','assets/the-reach-animated-rig.glb']:
+              assert (root/target).stat().st_size>1000,target
+          print('SHA256 release assets OK')
+          PYCI

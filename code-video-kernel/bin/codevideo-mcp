@@ -1,0 +1,26 @@
+#!/bin/sh
+# Local-only MCP transport. Explicitly fails if host Python/MCP is unavailable.
+set -eu
+ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd -P)
+: "${CODEVIDEO_WORKSPACE:?Host must set dedicated CODEVIDEO_WORKSPACE or plugin-managed PLUGIN_DATA}"
+if [ -n "${CODEVIDEO_PYTHON:-}" ]; then
+  PYTHON="$CODEVIDEO_PYTHON"
+elif [ -x "$ROOT/.venv/bin/python" ]; then
+  PYTHON="$ROOT/.venv/bin/python"
+elif [ -x "$CODEVIDEO_WORKSPACE/.venv/bin/python" ]; then
+  PYTHON="$CODEVIDEO_WORKSPACE/.venv/bin/python"
+elif command -v python3 >/dev/null 2>&1; then
+  PYTHON=$(command -v python3)
+else
+  echo 'Code Video MCP BLOCKED: Python 3.11+ not available' >&2
+  exit 127
+fi
+if ! "$PYTHON" -c 'import sys; assert sys.version_info >= (3,11); import mcp.server, numpy' 2>/dev/null; then
+  echo 'Code Video MCP BLOCKED: selected Python lacks >=3.11, numpy or official MCP SDK v2; install in a private virtual environment' >&2
+  exit 127
+fi
+# Do not create files outside the explicit project workspace.
+mkdir -p "$CODEVIDEO_WORKSPACE"
+export PYTHONPATH="$ROOT${PYTHONPATH:+:$PYTHONPATH}"
+cd "$ROOT"
+exec "$PYTHON" -m codevideo.mcp_server
