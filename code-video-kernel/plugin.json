@@ -1,0 +1,40 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "code-video-production-kernel",
+  "version": "0.3.2",
+  "description": "Evidence-gated actual 3D puppet animation with Blender armature proof, VTK weighted actor film, and portable animated glTF/GLB skin-and-bone interchange; Blender import must be executed on a real host.",
+  "author": {
+    "name": "Stinky Weasel Productions"
+  },
+  "license": "MIT",
+  "keywords": [
+    "3d",
+    "animation",
+    "rigging",
+    "puppet",
+    "blender",
+    "video",
+    "quality-assurance"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Code Video Studio",
+        "shortDescription": "Real 3D puppet rig proof and film production",
+        "longDescription": "Create a portable, skinned animated 3D puppet GLB, prove geometric motion, then verify native Blender import and video rendering on an authorized equipped machine.",
+        "developerName": "Stinky Weasel Productions",
+        "category": "Productivity",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "brandColor": "#C1202E",
+        "defaultPrompt": [
+          "Preflight my Code Video studio.",
+          "Inspect the real articulated rig in my Blender scene.",
+          "Render and verify the complete puppet film."
+        ]
+      }
+    }
+  }
+}

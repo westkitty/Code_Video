@@ -1,0 +1,13 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "code-video-local": {
+      "type": "stdio",
+      "command": "./bin/codevideo-mcp",
+      "cwd": "${PLUGIN_ROOT}",
+      "env": {
+        "CODEVIDEO_WORKSPACE": "${PLUGIN_DATA}/workspace"
+      }
+    }
+  }
+}

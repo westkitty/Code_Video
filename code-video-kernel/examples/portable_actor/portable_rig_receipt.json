@@ -1,0 +1,44 @@
+{
+  "animated_joints": 9,
+  "blender_import": "UNVERIFIED",
+  "format": "codevideo.portable-rig-receipt.v1",
+  "glb_sha256": "ea609544bc2dd6f407dd2c45c8e22443edc29d98a0b6bd6a11a1cd0a1b7eeca2",
+  "max_skinning_error_m": 3.337605545834358e-07,
+  "meshes": [
+    {
+      "animated_deformation_range_m": 1.0963669501266986,
+      "frames_checked": 289,
+      "max_skinning_error_m": 3.337605545834358e-07,
+      "skin": "right_arm_skinning",
+      "vertices": 464
+    },
+    {
+      "animated_deformation_range_m": 0.47101992730113307,
+      "frames_checked": 289,
+      "max_skinning_error_m": 3.337605545834358e-07,
+      "skin": "left_arm_skinning",
+      "vertices": 464
+    },
+    {
+      "animated_deformation_range_m": 0.05133514225728858,
+      "frames_checked": 289,
+      "max_skinning_error_m": 3.337605545834358e-07,
+      "skin": "right_leg_skinning",
+      "vertices": 464
+    },
+    {
+      "animated_deformation_range_m": 0.06931346288583307,
+      "frames_checked": 289,
+      "max_skinning_error_m": 3.337605545834358e-07,
+      "skin": "left_leg_skinning",
+      "vertices": 464
+    }
+  ],
+  "mp4_film": "NOT_INCLUDED",
+  "proof_format": "codevideo.portable-rig-proof.v1",
+  "samples_per_channel": 289,
+  "skin_count": 4,
+  "spec_sha256": "22ab1ba0493c0b8d7711851d8d3098d641495038ca0282f86f1a048f9b8c347c",
+  "status": "PASS",
+  "total_joint_animation_channels": 17
+}
