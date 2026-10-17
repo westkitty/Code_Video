@@ -4,6 +4,12 @@
 
 This repository preserves the Code Video Production Kernel **v0.3.2** and its later, tested film-contract source additions, along with the actual **The Reach** native Blender demonstration rendered on 2026-10-17. It does **not** claim that an arbitrary-input autonomous studio or connected ChatGPT MCP plugin is finished.
 
+## New full-HD native production acceptance fixture (2026-10-17)
+
+**[Watch The Weight of Light](assets/weight-of-light-native-blender.mp4)** · [Native editable Blender scene](assets/weight-of-light-editable.blend) · [QA and known limitations](docs/WEIGHT_OF_LIGHT_QA.md) · [Rig proof](docs/weight-of-light-rig-proof.json) · [360-source-frame manifest](docs/weight-of-light-frame-manifest.json) · [Full-encode receipt](docs/weight-of-light-film-receipt.json).
+
+A brand-new supported film job produced a genuine 1920×1080, 30fps, 12-second, H.264/yuv420p film on Blender 5.2.2, with 360 source-hashed frames and successful full decodes on Big Mac and MacBook. Native source has 18 bones, 11 animated nonroot joints and four continuously weighted deforming limb meshes, with sampled physical hand/block contact. The encoder and renderer pass. Visual quality is **PARTIAL**: extended near-static holds and subdued prop acting remain. This is a bounded original humanoid template, **not** arbitrary natural-language film production or completed autonomous studio. The previous Reach film and v0.3.2 packages are preserved.
+
 ## Proof that exists
 
 - Native Blender 5.2.2 Eevee film, **12.0 seconds**, **24 fps**, **288 frames**, **480×270**, H.264/yuv420p, intentionally silent, **no subtitles**.
@@ -30,6 +36,12 @@ python -m pytest -q code-video-kernel/tests
 ```
 
 This excludes the optional VTK dependency; VTK-specific integration tests may skip when unavailable. Blender rendering additionally requires a real Blender 5.2+ binary and FFmpeg. Do not assume the code's optional MCP server is connected until an authenticated live handshake has been verified.
+
+## Experimental new-job pipeline (development branch)
+
+The new Python native-film lane supports a validated, independent 3D Blender production job rather than rerunning The Reach: original humanoid, independently timed armature joints, four weighted limb skins, a motivated prop interaction, three cameras, actual pose/mesh proof, resumable PNG frames, and an H.264 full-decode receipt. The flagship test is The Weight of Light at 1920x1080, 30 fps, 12 seconds. See code-video-kernel/docs/NEW_JOB_PIPELINE.md and code-video-kernel/examples/weight_of_light/job.json.
+
+Currently **template-limited**: one noncanonical humanoid/action preset only; multi-character, arbitrary anatomy, Starsilk identity, audio/lip sync and free-form story production are not certified. New rendering, encoded media QA, visual inspection, and public delivery must each be proven separately before calling the studio finished.
 
 ## Publication / safety
 

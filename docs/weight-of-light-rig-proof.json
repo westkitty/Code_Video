@@ -1,0 +1,127 @@
+{
+  "animated_nonroot_deltas": {
+    "L_fore": 0.13702,
+    "L_thigh": 0.0376,
+    "L_upper": 0.18455,
+    "R_fore": 0.30813,
+    "R_thigh": 0.03654,
+    "R_upper": 1.29744,
+    "head": 0.11165,
+    "jaw": 0.05133,
+    "neck": 0.27676,
+    "pelvis": 0.03884,
+    "spine": 0.14944
+  },
+  "bone_parents": {
+    "L_foot": "L_shin",
+    "L_fore": "L_upper",
+    "L_hand": "L_fore",
+    "L_shin": "L_thigh",
+    "L_thigh": "pelvis",
+    "L_upper": "chest",
+    "R_foot": "R_shin",
+    "R_fore": "R_upper",
+    "R_hand": "R_fore",
+    "R_shin": "R_thigh",
+    "R_thigh": "pelvis",
+    "R_upper": "chest",
+    "chest": "spine",
+    "head": "neck",
+    "jaw": "head",
+    "neck": "chest",
+    "pelvis": "root",
+    "root": null,
+    "spine": "pelvis"
+  },
+  "classification": "REAL_BLENDER_RIG_TECHNICAL_PROOF_VISUAL_REVIEW_REQUIRED",
+  "deforming_mesh_deltas_m": {
+    "L_Arm": 0.75551,
+    "L_Leg": 0.02461,
+    "R_Arm": 0.30059,
+    "R_Leg": 0.02484
+  },
+  "diagnostic_camera_fixed": true,
+  "diagnostic_hashes": {
+    "pose_00001.png": "6dd0758dec39986251e7c79df26758484275fbeb1ddd643c5a544e601e8c7316",
+    "pose_00183.png": "da816e6f07b96492bd9cd10eb474afa71ef3931a6959960564892953cb77c5f3",
+    "pose_00236.png": "363362704eb5b4766eaa31fda1099664421f669110bd541e9e527e46dfb5339d",
+    "pose_00360.png": "63038cffbf63d6382ccc680a585d595472d411c74a9b7f08bf21594fe084fd10",
+    "shot_s01_00001.png": "7e415c9125c6c21e5e11301515fd89a4f11f146f3ac475bea6da6f7428138b6e",
+    "shot_s01_00060.png": "e1342baaaa02dd07c22d7d822d7f9774b2c10797686cdb9a0e4c580d448b7c98",
+    "shot_s01_00120.png": "2a2736e1309173956dbd82e211a331777883641a3f4585da8f0d039a0b3910f7",
+    "shot_s02_00121.png": "2a2f49de02af86c0e96a794834f2619664562a7c6348312770e7a42067ff6879",
+    "shot_s02_00180.png": "9db8283446a371186e07c3f9111894bf7a48ffe061f6ed2f8f1e8ace29677ea4",
+    "shot_s02_00240.png": "7ff586a0c987c5a6e243377efea13dc133faa9455af3b5d994dc67a3673a8f57",
+    "shot_s03_00241.png": "9f27276bd732999bb87a795021de145b1d2a68e1918ab9bd73f4a8a28d953e47",
+    "shot_s03_00300.png": "f94eb5ab88429cdd060ae2abff78694c861571895b0bd7ba488369f2111fc327",
+    "shot_s03_00360.png": "2589b66d01b698b45df23bef69d6bc44c3fc259e479445a423289aff1191c133"
+  },
+  "helper_sha256": "030b94e0e27b31e14a87bbbf1462af64e5e9c527b8df34fbff846d8d21c1da3d",
+  "ik_targets": [
+    "IK_R_Hand_Target",
+    "IK_R_Pole",
+    "IK_L_Foot",
+    "IK_R_Foot",
+    "IK_L_Pole",
+    "IK_RF_Pole"
+  ],
+  "job_id": "weight_of_light_release",
+  "prop_contact": {
+    "block": "Block_Obstacle",
+    "frame_begin": 176,
+    "frame_end": 260,
+    "measured_samples": {
+      "176": {
+        "geometry_bbox_clearance_m": 0.0,
+        "method": "evaluated skinned palm/obstacle world bounding volumes"
+      },
+      "200": {
+        "geometry_bbox_clearance_m": 0.0,
+        "method": "evaluated skinned palm/obstacle world bounding volumes"
+      },
+      "220": {
+        "geometry_bbox_clearance_m": 0.0,
+        "method": "evaluated skinned palm/obstacle world bounding volumes"
+      },
+      "235": {
+        "geometry_bbox_clearance_m": 0.0,
+        "method": "evaluated skinned palm/obstacle world bounding volumes"
+      },
+      "260": {
+        "geometry_bbox_clearance_m": 0.00819,
+        "method": "evaluated skinned palm/obstacle world bounding volumes"
+      }
+    },
+    "target": "IK_R_Hand_Target",
+    "type": "push"
+  },
+  "root_fixed": true,
+  "sample_frames": [
+    1,
+    112,
+    183,
+    236,
+    310,
+    360
+  ],
+  "scene_sha256": "4b9553371f83cf4a0703692d756a5e982e833d0ef12e331f57824a0a85e0c2e2",
+  "weighted_meshes": {
+    "L_Arm": [
+      "L_upper",
+      "L_fore"
+    ],
+    "L_Leg": [
+      "L_thigh",
+      "L_shin"
+    ],
+    "R_Arm": [
+      "R_upper",
+      "R_fore"
+    ],
+    "R_Leg": [
+      "R_thigh",
+      "R_shin"
+    ]
+  },
+  "worker_sha256": "5b077ef5cd8b300c384c71043d67348144d16510cf8198a307eb03ceb5116a12"
+}

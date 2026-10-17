@@ -217,7 +217,7 @@ def test_full_mp4_assembly_with_synthetic_frame_fixture(tmp_path):
     assert output['check']['visual_qa']=='NOT_PERFORMED'
     assert assemble(tmp_path,'film.json','proof.json')['status']=='TECHNICAL_PASS_VISUAL_PENDING'
 
-def test_mcp_adapter_registers_twenty_four_bounded_tools(monkeypatch,tmp_path):
+def test_mcp_adapter_registers_native_film_job_tools(monkeypatch,tmp_path):
     """Tool registration contract only; NOT an MCP transport integration test."""
     import sys,types
     class FakeServer:
@@ -231,7 +231,10 @@ def test_mcp_adapter_registers_twenty_four_bounded_tools(monkeypatch,tmp_path):
     monkeypatch.setitem(sys.modules,'mcp.server',server)
     from codevideo.mcp_server import build_server,serve
     app=build_server(tmp_path)
-    assert len(app.tools)==28
+    assert len(app.tools)==33
+    assert {'preflight_new_film_job','build_new_film_rig',
+            'render_next_new_film_batch','encode_new_film',
+            'produce_supported_new_film'}.issubset(app.tools)
     assert {"render_mechanical_3d_smoke","replay_articulated_3d_stage","check_articulated_3d_stage","render_golden_reach_actor","check_golden_reach_actor","export_portable_animated_rig","verify_portable_animated_rig"}.issubset(app.tools)
     assert app.tools['preflight']()['workspace']==str(tmp_path)
     assert app.tools['create_project']('tester')['status']=='TEMPLATE_CREATED_UNVALIDATED'

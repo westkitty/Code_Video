@@ -109,7 +109,7 @@ def extract_review_frames(root:Path,video:str,graph_path:str)->dict:
     expression='+'.join(f'eq(n\\,{f})' for f in marker_positions)
     sequence=packet/'sample_%06d.png'
     rc,_,stderr=run_checked([ffmpeg,'-hide_banner','-nostdin','-v','error','-i',str(source),
-                 '-vf',f'select={expression}','-vsync','0','-start_number','0',str(sequence)],timeout=900)
+                 '-vf',f'select={expression}','-fps_mode','passthrough','-start_number','0',str(sequence)],timeout=900)
     samples=sorted(packet.glob('sample_*.png'))
     if rc or len(samples)!=len(marker_positions):
         return result('PARTIAL',gate='REVIEW_EXTRACTION',error='Sample count or extraction failed',

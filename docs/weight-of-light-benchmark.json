@@ -1,0 +1,19 @@
+{
+  "samples": [
+    {
+      "frame": 1,
+      "shot": "s01",
+      "wall_s": 5.082
+    },
+    {
+      "frame": 121,
+      "shot": "s02",
+      "wall_s": 5.252
+    },
+    {
+      "frame": 241,
+      "shot": "s03",
+      "wall_s": 5.205
+    }
+  ]
+}

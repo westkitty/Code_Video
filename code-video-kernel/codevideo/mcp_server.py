@@ -180,6 +180,36 @@ def build_server(root:Path):
         from .project import production_status
         return production_status(root,graph_path,proof_path or None,video_path or None)
 
+    @app.tool()
+    def preflight_new_film_job(job_path: str) -> dict:
+        """Validate a source-bound new film request; never claim that a valid plan is rendered."""
+        from .production_job import preflight
+        return preflight(root,job_path)
+
+    @app.tool()
+    def build_new_film_rig(job_path: str) -> dict:
+        """Build and prove a fresh original weighted humanoid .blend via actual Blender."""
+        from .production_job import build
+        return build(root,job_path)
+
+    @app.tool()
+    def render_next_new_film_batch(job_path: str, max_frames: int = 48) -> dict:
+        """Render and hash-check up to 48 missing real Blender frames, safely resumable."""
+        from .production_job import render
+        return render(root,job_path,max_frames=max(1,min(48,max_frames)))
+
+    @app.tool()
+    def encode_new_film(job_path: str) -> dict:
+        """Only after every scene-bound PNG is verified, encode and fully decode a new MP4."""
+        from .production_job import encode
+        return encode(root,job_path)
+
+    @app.tool()
+    def produce_supported_new_film(job_path: str, max_seconds: int = 7200) -> dict:
+        """Complete new verified-template 3D film production. The visual approval remains manual."""
+        from .production_job import produce
+        return produce(root,job_path,max_render_seconds=max(600,min(14400,max_seconds)))
+
     return app
 
 def serve(root:Path,host:str='127.0.0.1',port:int=8787,stdio:bool=False):
